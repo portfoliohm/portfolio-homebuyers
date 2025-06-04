@@ -25,6 +25,7 @@ export default function Partners() {
 
       <main className="page-content">
         <section className="page-hero">
+          <div className="gradient-overlay"></div>
           <div className="container">
             <h1>Partner <span className="gradient-text">Program</span></h1>
             <p className="hero-subtitle">Turn dead deals into success stories</p>
@@ -39,7 +40,7 @@ export default function Partners() {
             </div>
 
             <div className="benefits-grid">
-              <div className="benefit-card">
+              <div className="benefit-card glass-card">
                 <div className="benefit-icon">💰</div>
                 <h3>For Real Estate Agents</h3>
                 <ul>
@@ -50,7 +51,7 @@ export default function Partners() {
                   <li>Strengthen your reputation as a problem solver</li>
                 </ul>
               </div>
-              <div className="benefit-card">
+              <div className="benefit-card glass-card">
                 <div className="benefit-icon">🏦</div>
                 <h3>For Mortgage Professionals</h3>
                 <ul>
@@ -84,7 +85,7 @@ export default function Partners() {
               </div>
             </div>
 
-            <div className="partner-form-section">
+            <div className="partner-form-section glass-card">
               <h2>Become a Preferred Partner</h2>
               <form name="partner-application" method="POST" data-netlify="true">
                 <input type="hidden" name="form-name" value="partner-application" />
@@ -136,15 +137,53 @@ export default function Partners() {
               </form>
             </div>
 
-            <div className="cta-section">
+            <div className="cta-section glass-card">
               <h2>Questions?</h2>
               <p>Call our Partner Hotline: 1-800-XXX-XXXX</p>
             </div>
           </div>
         </section>
+
+        <footer className="footer">
+          <div className="container">
+            <div className="footer-grid">
+              <div className="footer-column">
+                <h4>Portfolio Homebuyers</h4>
+                <p>The fastest, most reliable way to exit your investment properties.</p>
+              </div>
+              <div className="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                  <li><Link href="/about">About Us</Link></li>
+                  <li><Link href="/process">Our Process</Link></li>
+                  <li><Link href="/reviews">Reviews</Link></li>
+                  <li><Link href="/partners">Partners</Link></li>
+                </ul>
+              </div>
+              <div className="footer-column">
+                <h4>Contact</h4>
+                <p>1-800-XXX-XXXX</p>
+                <p>info@portfoliohomebuyers.com</p>
+                <p>Available 7 days a week</p>
+              </div>
+              <div className="footer-column">
+                <h4>Get Started</h4>
+                <p>Ready to sell your portfolio?</p>
+                <Link href="/#offer-form" className="footer-cta">Get Cash Offer →</Link>
+              </div>
+            </div>
+            <div className="footer-bottom">
+              <p>&copy; 2025 Portfolio Homebuyers. All rights reserved.</p>
+              <div className="footer-links">
+                <Link href="/privacy">Privacy Policy</Link>
+                <Link href="/terms">Terms of Service</Link>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
 
-      <style jsx>{`
+      <style jsx global>{`
         * {
           margin: 0;
           padding: 0;
@@ -165,6 +204,7 @@ export default function Partners() {
           font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           line-height: 1.6;
           color: var(--navy);
+          background: var(--white);
         }
 
         .navbar {
@@ -215,6 +255,11 @@ export default function Partners() {
           font-weight: 600;
         }
 
+        .nav-cta:hover {
+          background: var(--emerald-dark);
+          color: var(--white) !important;
+        }
+
         .container {
           max-width: 1200px;
           margin: 0 auto;
@@ -228,19 +273,35 @@ export default function Partners() {
         .page-hero {
           background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
           color: white;
-          padding: 80px 0;
+          padding: 100px 0;
           text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .gradient-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+          pointer-events: none;
         }
 
         .page-hero h1 {
-          font-size: 3rem;
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
           font-weight: 700;
           margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
         }
 
         .hero-subtitle {
           font-size: 1.3rem;
           opacity: 0.9;
+          position: relative;
+          z-index: 1;
         }
 
         .gradient-text {
@@ -252,6 +313,16 @@ export default function Partners() {
 
         .content-section {
           padding: 80px 0;
+          background: linear-gradient(to bottom, var(--light-gray), white);
+        }
+
+        .glass-card {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(16, 185, 129, 0.1);
+          border-radius: 16px;
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
         }
 
         .partner-intro {
@@ -263,6 +334,7 @@ export default function Partners() {
           font-size: 2.5rem;
           color: var(--navy);
           margin-bottom: 20px;
+          font-weight: 700;
         }
 
         .lead-text {
@@ -281,9 +353,12 @@ export default function Partners() {
         }
 
         .benefit-card {
-          background: var(--light-gray);
-          padding: 40px;
-          border-radius: 16px;
+          padding: 45px;
+          transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+          transform: translateY(-5px);
         }
 
         .benefit-icon {
@@ -293,8 +368,9 @@ export default function Partners() {
 
         .benefit-card h3 {
           color: var(--navy);
-          margin-bottom: 20px;
-          font-size: 1.5rem;
+          margin-bottom: 25px;
+          font-size: 1.6rem;
+          font-weight: 700;
         }
 
         .benefit-card ul {
@@ -302,10 +378,12 @@ export default function Partners() {
         }
 
         .benefit-card li {
-          padding: 10px 0;
-          padding-left: 30px;
+          padding: 12px 0;
+          padding-left: 35px;
           position: relative;
           color: var(--gray);
+          font-size: 1.05rem;
+          line-height: 1.6;
         }
 
         .benefit-card li:before {
@@ -314,7 +392,7 @@ export default function Partners() {
           left: 0;
           color: var(--emerald);
           font-weight: bold;
-          font-size: 1.2rem;
+          font-size: 1.3rem;
         }
 
         .how-it-works-section {
@@ -325,7 +403,8 @@ export default function Partners() {
         .how-it-works-section h2 {
           font-size: 2.5rem;
           color: var(--navy);
-          margin-bottom: 40px;
+          margin-bottom: 50px;
+          font-weight: 700;
         }
 
         .partner-steps {
@@ -349,23 +428,24 @@ export default function Partners() {
           font-size: 2rem;
           font-weight: 700;
           color: var(--white);
-          margin: 0 auto 20px;
+          margin: 0 auto 25px;
+          box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
         }
 
         .partner-step h3 {
           color: var(--navy);
           margin-bottom: 15px;
-          font-size: 1.3rem;
+          font-size: 1.4rem;
+          font-weight: 700;
         }
 
         .partner-step p {
           color: var(--gray);
+          font-size: 1.05rem;
         }
 
         .partner-form-section {
-          background: var(--light-gray);
           padding: 60px;
-          border-radius: 16px;
           margin: 60px 0;
         }
 
@@ -373,7 +453,8 @@ export default function Partners() {
           text-align: center;
           margin-bottom: 40px;
           color: var(--navy);
-          font-size: 2rem;
+          font-size: 2.2rem;
+          font-weight: 700;
         }
 
         .form-grid {
@@ -383,7 +464,7 @@ export default function Partners() {
         }
 
         .form-group {
-          margin-bottom: 20px;
+          margin-bottom: 25px;
         }
 
         .form-group label {
@@ -391,6 +472,7 @@ export default function Partners() {
           margin-bottom: 8px;
           font-weight: 600;
           color: var(--navy);
+          font-size: 0.95rem;
         }
 
         .form-group input,
@@ -408,7 +490,7 @@ export default function Partners() {
 
         .form-group textarea {
           resize: vertical;
-          min-height: 100px;
+          min-height: 120px;
         }
 
         .form-group input:focus,
@@ -423,7 +505,7 @@ export default function Partners() {
           font-size: 0.9rem;
           color: var(--gray);
           font-style: italic;
-          margin: 20px 0;
+          margin: 25px 0;
           text-align: center;
         }
 
@@ -435,19 +517,19 @@ export default function Partners() {
         .cta-section {
           text-align: center;
           padding: 60px;
-          background: var(--light-gray);
-          border-radius: 16px;
+          background: var(--navy);
+          color: white;
           margin-top: 60px;
         }
 
         .cta-section h2 {
           margin-bottom: 20px;
-          color: var(--navy);
+          font-size: 2.5rem;
         }
 
         .cta-section p {
-          color: var(--gray);
-          font-size: 1.2rem;
+          font-size: 1.3rem;
+          opacity: 0.9;
         }
 
         .glow-button {
@@ -470,29 +552,13 @@ export default function Partners() {
           box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.6);
         }
 
-        @media (max-width: 768px) {
-          .nav-links {
-            display: none;
-          }
-
-          .benefits-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .partner-steps {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-
-          .form-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .partner-form-section {
-            padding: 40px 30px;
-          }
+        .footer {
+          background: var(--navy);
+          color: white;
+          padding: 60px 0 30px;
         }
-      `}</style>
-    </>
-  )
-}
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 40px;
