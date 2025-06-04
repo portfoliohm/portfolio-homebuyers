@@ -25,6 +25,7 @@ export default function Reviews() {
 
       <main className="page-content">
         <section className="page-hero">
+          <div className="gradient-overlay"></div>
           <div className="container">
             <h1>Investor <span className="gradient-text">Success Stories</span></h1>
             <p className="hero-subtitle">Real reviews from real estate investors we've helped</p>
@@ -34,7 +35,7 @@ export default function Reviews() {
         <section className="content-section">
           <div className="container">
             <div className="reviews-grid">
-              <div className="review-card featured">
+              <div className="review-card featured glass-card">
                 <div className="review-header">
                   <div className="reviewer-info">
                     <h3>Jim K.</h3>
@@ -58,7 +59,7 @@ export default function Reviews() {
                 </div>
               </div>
 
-              <div className="review-card">
+              <div className="review-card glass-card">
                 <div className="review-header">
                   <div className="reviewer-info">
                     <h3>Sarah M.</h3>
@@ -73,7 +74,7 @@ export default function Reviews() {
                 </p>
               </div>
 
-              <div className="review-card">
+              <div className="review-card glass-card">
                 <div className="review-header">
                   <div className="reviewer-info">
                     <h3>The Johnson Estate</h3>
@@ -88,7 +89,7 @@ export default function Reviews() {
                 </p>
               </div>
 
-              <div className="review-card">
+              <div className="review-card glass-card">
                 <div className="review-header">
                   <div className="reviewer-info">
                     <h3>Michael T.</h3>
@@ -103,7 +104,7 @@ export default function Reviews() {
                 </p>
               </div>
 
-              <div className="review-card">
+              <div className="review-card glass-card">
                 <div className="review-header">
                   <div className="reviewer-info">
                     <h3>Robert & Linda P.</h3>
@@ -118,7 +119,7 @@ export default function Reviews() {
                 </p>
               </div>
 
-              <div className="review-card">
+              <div className="review-card glass-card">
                 <div className="review-header">
                   <div className="reviewer-info">
                     <h3>David Chen</h3>
@@ -137,35 +138,73 @@ export default function Reviews() {
             <div className="stats-section">
               <h2>By The Numbers</h2>
               <div className="stats-grid">
-                <div className="stat-box">
+                <div className="stat-box glass-card">
                   <div className="stat-number">96%</div>
                   <div className="stat-label">Customer Satisfaction</div>
                 </div>
-                <div className="stat-box">
+                <div className="stat-box glass-card">
                   <div className="stat-number">19 Days</div>
                   <div className="stat-label">Average Close Time</div>
                 </div>
-                <div className="stat-box">
+                <div className="stat-box glass-card">
                   <div className="stat-number">$47M+</div>
                   <div className="stat-label">Properties Purchased</div>
                 </div>
-                <div className="stat-box">
+                <div className="stat-box glass-card">
                   <div className="stat-number">500+</div>
                   <div className="stat-label">Happy Investors</div>
                 </div>
               </div>
             </div>
 
-            <div className="cta-section">
+            <div className="cta-section glass-card">
               <h2>Join Our Success Stories</h2>
               <p>Get your no-obligation cash offer today.</p>
               <Link href="/#offer-form" className="glow-button">Get Your Cash Offer →</Link>
             </div>
           </div>
         </section>
+
+        <footer className="footer">
+          <div className="container">
+            <div className="footer-grid">
+              <div className="footer-column">
+                <h4>Portfolio Homebuyers</h4>
+                <p>The fastest, most reliable way to exit your investment properties.</p>
+              </div>
+              <div className="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                  <li><Link href="/about">About Us</Link></li>
+                  <li><Link href="/process">Our Process</Link></li>
+                  <li><Link href="/reviews">Reviews</Link></li>
+                  <li><Link href="/partners">Partners</Link></li>
+                </ul>
+              </div>
+              <div className="footer-column">
+                <h4>Contact</h4>
+                <p>1-800-XXX-XXXX</p>
+                <p>info@portfoliohomebuyers.com</p>
+                <p>Available 7 days a week</p>
+              </div>
+              <div className="footer-column">
+                <h4>Get Started</h4>
+                <p>Ready to sell your portfolio?</p>
+                <Link href="/#offer-form" className="footer-cta">Get Cash Offer →</Link>
+              </div>
+            </div>
+            <div className="footer-bottom">
+              <p>&copy; 2025 Portfolio Homebuyers. All rights reserved.</p>
+              <div className="footer-links">
+                <Link href="/privacy">Privacy Policy</Link>
+                <Link href="/terms">Terms of Service</Link>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
 
-      <style jsx>{`
+      <style jsx global>{`
         * {
           margin: 0;
           padding: 0;
@@ -186,6 +225,7 @@ export default function Reviews() {
           font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           line-height: 1.6;
           color: var(--navy);
+          background: var(--white);
         }
 
         .navbar {
@@ -236,6 +276,11 @@ export default function Reviews() {
           font-weight: 600;
         }
 
+        .nav-cta:hover {
+          background: var(--emerald-dark);
+          color: var(--white) !important;
+        }
+
         .container {
           max-width: 1200px;
           margin: 0 auto;
@@ -249,19 +294,35 @@ export default function Reviews() {
         .page-hero {
           background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
           color: white;
-          padding: 80px 0;
+          padding: 100px 0;
           text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .gradient-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+          pointer-events: none;
         }
 
         .page-hero h1 {
-          font-size: 3rem;
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
           font-weight: 700;
           margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
         }
 
         .hero-subtitle {
           font-size: 1.3rem;
           opacity: 0.9;
+          position: relative;
+          z-index: 1;
         }
 
         .gradient-text {
@@ -273,6 +334,16 @@ export default function Reviews() {
 
         .content-section {
           padding: 80px 0;
+          background: linear-gradient(to bottom, var(--light-gray), white);
+        }
+
+        .glass-card {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(16, 185, 129, 0.1);
+          border-radius: 16px;
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
         }
 
         .reviews-grid {
@@ -283,22 +354,19 @@ export default function Reviews() {
         }
 
         .review-card {
-          background: white;
-          border: 2px solid var(--light-gray);
-          border-radius: 16px;
-          padding: 30px;
+          padding: 35px;
           transition: all 0.3s ease;
         }
 
         .review-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
         }
 
         .review-card.featured {
           grid-column: 1 / -1;
-          background: var(--light-gray);
-          border-color: var(--emerald);
+          background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
+          border: 2px solid rgba(16, 185, 129, 0.2);
         }
 
         .review-header {
@@ -311,11 +379,13 @@ export default function Reviews() {
         .reviewer-info h3 {
           margin-bottom: 5px;
           color: var(--navy);
+          font-size: 1.3rem;
+          font-weight: 700;
         }
 
         .reviewer-info p {
           color: var(--gray);
-          font-size: 0.9rem;
+          font-size: 0.95rem;
         }
 
         .review-meta {
@@ -324,31 +394,33 @@ export default function Reviews() {
         }
 
         .review-meta span {
-          background: var(--emerald);
+          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
           color: var(--white);
-          padding: 5px 15px;
+          padding: 6px 16px;
           border-radius: 20px;
           font-size: 0.85rem;
           font-weight: 600;
+          box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
         }
 
         .review-text {
           color: var(--gray);
-          line-height: 1.7;
+          line-height: 1.8;
           margin-bottom: 20px;
           font-style: italic;
+          font-size: 1.05rem;
         }
 
         .review-stats {
           display: flex;
           gap: 30px;
           padding-top: 20px;
-          border-top: 1px solid var(--light-gray);
+          border-top: 1px solid rgba(16, 185, 129, 0.1);
         }
 
         .review-stats .stat {
           color: var(--gray);
-          font-size: 0.9rem;
+          font-size: 0.95rem;
         }
 
         .stats-section {
@@ -357,9 +429,10 @@ export default function Reviews() {
         }
 
         .stats-section h2 {
-          margin-bottom: 40px;
+          margin-bottom: 50px;
           font-size: 2.5rem;
           color: var(--navy);
+          font-weight: 700;
         }
 
         .stats-grid {
@@ -371,14 +444,21 @@ export default function Reviews() {
         .stat-box {
           background: var(--navy);
           color: white;
-          padding: 40px;
-          border-radius: 16px;
+          padding: 50px 30px;
+          text-align: center;
+          transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+          transform: scale(1.05);
         }
 
         .stat-box .stat-number {
-          font-size: 3rem;
+          font-size: 3.5rem;
           font-weight: 700;
-          color: var(--emerald);
+          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           margin-bottom: 10px;
         }
 
@@ -390,20 +470,20 @@ export default function Reviews() {
         .cta-section {
           text-align: center;
           padding: 60px;
-          background: var(--light-gray);
-          border-radius: 16px;
+          background: var(--navy);
+          color: white;
           margin-top: 60px;
         }
 
         .cta-section h2 {
           margin-bottom: 20px;
-          color: var(--navy);
+          font-size: 2.5rem;
         }
 
         .cta-section p {
           margin-bottom: 30px;
-          color: var(--gray);
           font-size: 1.2rem;
+          opacity: 0.9;
         }
 
         .glow-button {
@@ -426,6 +506,86 @@ export default function Reviews() {
           box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.6);
         }
 
+        .footer {
+          background: var(--navy);
+          color: white;
+          padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 40px;
+          margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+          margin-bottom: 20px;
+          color: var(--emerald);
+        }
+
+        .footer-column ul {
+          list-style: none;
+        }
+
+        .footer-column ul li {
+          margin-bottom: 10px;
+        }
+
+        .footer-column a {
+          color: white;
+          text-decoration: none;
+          opacity: 0.8;
+          transition: all 0.3s;
+        }
+
+        .footer-column a:hover {
+          opacity: 1;
+          color: var(--emerald);
+        }
+
+        .footer-cta {
+          display: inline-block;
+          margin-top: 15px;
+          background: var(--emerald);
+          color: var(--white);
+          padding: 10px 25px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s;
+        }
+
+        .footer-cta:hover {
+          background: var(--emerald-dark);
+          transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+          padding-top: 30px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .footer-links {
+          display: flex;
+          gap: 30px;
+        }
+
+        .footer-links a {
+          color: white;
+          text-decoration: none;
+          opacity: 0.8;
+          transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+          opacity: 1;
+        }
+
         @media (max-width: 768px) {
           .nav-links {
             display: none;
@@ -443,6 +603,11 @@ export default function Reviews() {
           .review-stats {
             flex-direction: column;
             gap: 10px;
+          }
+
+          .footer-bottom {
+            flex-direction: column;
+            gap: 20px;
           }
         }
       `}</style>
