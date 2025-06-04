@@ -226,6 +226,7 @@ export default function Reviews() {
           line-height: 1.6;
           color: var(--navy);
           background: var(--white);
+          overflow-x: hidden;
         }
 
         .navbar {
@@ -499,6 +500,7 @@ export default function Reviews() {
           display: inline-block;
           transition: all 0.3s ease;
           box-shadow: 0 4px 15px 0 rgba(16, 185, 129, 0.4);
+          font-family: 'Satoshi', sans-serif;
         }
 
         .glow-button:hover {
