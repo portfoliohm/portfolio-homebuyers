@@ -1,5 +1,8 @@
 // pages/reviews.js
-export function Reviews() {
+import Head from 'next/head'
+import Link from 'next/link'
+
+export default function Reviews() {
   return (
     <>
       <Head>
@@ -163,8 +166,285 @@ export function Reviews() {
       </main>
 
       <style jsx>{`
-        ${getPageStyles()}
-        ${getReviewStyles()}
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        :root {
+          --navy: #0f172a;
+          --navy-light: #1e293b;
+          --emerald: #10b981;
+          --emerald-dark: #059669;
+          --gray: #64748b;
+          --light-gray: #f1f5f9;
+          --white: #ffffff;
+        }
+
+        body {
+          font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          line-height: 1.6;
+          color: var(--navy);
+        }
+
+        .navbar {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          background: rgba(15, 23, 42, 0.95);
+          backdrop-filter: blur(10px);
+          z-index: 1000;
+          padding: 1rem 0;
+        }
+
+        .nav-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: white;
+          text-decoration: none;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 2rem;
+          align-items: center;
+        }
+
+        .nav-links a {
+          color: white;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+          color: var(--emerald);
+        }
+
+        .nav-cta {
+          background: var(--emerald);
+          color: var(--white) !important;
+          padding: 0.5rem 1.5rem;
+          border-radius: 50px;
+          font-weight: 600;
+        }
+
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .page-content {
+          padding-top: 80px;
+        }
+
+        .page-hero {
+          background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+          color: white;
+          padding: 80px 0;
+          text-align: center;
+        }
+
+        .page-hero h1 {
+          font-size: 3rem;
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+          font-size: 1.3rem;
+          opacity: 0.9;
+        }
+
+        .gradient-text {
+          background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .content-section {
+          padding: 80px 0;
+        }
+
+        .reviews-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 30px;
+          margin-bottom: 60px;
+        }
+
+        .review-card {
+          background: white;
+          border: 2px solid var(--light-gray);
+          border-radius: 16px;
+          padding: 30px;
+          transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-card.featured {
+          grid-column: 1 / -1;
+          background: var(--light-gray);
+          border-color: var(--emerald);
+        }
+
+        .review-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: start;
+          margin-bottom: 20px;
+        }
+
+        .reviewer-info h3 {
+          margin-bottom: 5px;
+          color: var(--navy);
+        }
+
+        .reviewer-info p {
+          color: var(--gray);
+          font-size: 0.9rem;
+        }
+
+        .review-meta {
+          display: flex;
+          gap: 15px;
+        }
+
+        .review-meta span {
+          background: var(--emerald);
+          color: var(--white);
+          padding: 5px 15px;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 600;
+        }
+
+        .review-text {
+          color: var(--gray);
+          line-height: 1.7;
+          margin-bottom: 20px;
+          font-style: italic;
+        }
+
+        .review-stats {
+          display: flex;
+          gap: 30px;
+          padding-top: 20px;
+          border-top: 1px solid var(--light-gray);
+        }
+
+        .review-stats .stat {
+          color: var(--gray);
+          font-size: 0.9rem;
+        }
+
+        .stats-section {
+          margin: 80px 0;
+          text-align: center;
+        }
+
+        .stats-section h2 {
+          margin-bottom: 40px;
+          font-size: 2.5rem;
+          color: var(--navy);
+        }
+
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 30px;
+        }
+
+        .stat-box {
+          background: var(--navy);
+          color: white;
+          padding: 40px;
+          border-radius: 16px;
+        }
+
+        .stat-box .stat-number {
+          font-size: 3rem;
+          font-weight: 700;
+          color: var(--emerald);
+          margin-bottom: 10px;
+        }
+
+        .stat-box .stat-label {
+          font-size: 1.1rem;
+          opacity: 0.9;
+        }
+
+        .cta-section {
+          text-align: center;
+          padding: 60px;
+          background: var(--light-gray);
+          border-radius: 16px;
+          margin-top: 60px;
+        }
+
+        .cta-section h2 {
+          margin-bottom: 20px;
+          color: var(--navy);
+        }
+
+        .cta-section p {
+          margin-bottom: 30px;
+          color: var(--gray);
+          font-size: 1.2rem;
+        }
+
+        .glow-button {
+          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+          color: var(--white);
+          padding: 16px 32px;
+          border: none;
+          border-radius: 50px;
+          font-size: 18px;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-block;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px 0 rgba(16, 185, 129, 0.4);
+        }
+
+        .glow-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.6);
+        }
+
+        @media (max-width: 768px) {
+          .nav-links {
+            display: none;
+          }
+
+          .reviews-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .review-header {
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .review-stats {
+            flex-direction: column;
+            gap: 10px;
+          }
+        }
       `}</style>
     </>
   )
