@@ -89,7 +89,261 @@ export default function About() {
       </main>
 
       <style jsx>{`
-        ${getPageStyles()}
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        :root {
+          --navy: #0f172a;
+          --navy-light: #1e293b;
+          --emerald: #10b981;
+          --emerald-dark: #059669;
+          --gray: #64748b;
+          --light-gray: #f1f5f9;
+          --white: #ffffff;
+        }
+
+        body {
+          font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          line-height: 1.6;
+          color: var(--navy);
+        }
+
+        .navbar {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          background: rgba(15, 23, 42, 0.95);
+          backdrop-filter: blur(10px);
+          z-index: 1000;
+          padding: 1rem 0;
+        }
+
+        .nav-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: white;
+          text-decoration: none;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 2rem;
+          align-items: center;
+        }
+
+        .nav-links a {
+          color: white;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+          color: var(--emerald);
+        }
+
+        .nav-cta {
+          background: var(--emerald);
+          color: var(--white) !important;
+          padding: 0.5rem 1.5rem;
+          border-radius: 50px;
+          font-weight: 600;
+        }
+
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .page-content {
+          padding-top: 80px;
+        }
+
+        .page-hero {
+          background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+          color: white;
+          padding: 80px 0;
+          text-align: center;
+        }
+
+        .page-hero h1 {
+          font-size: 3rem;
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+          font-size: 1.3rem;
+          opacity: 0.9;
+        }
+
+        .gradient-text {
+          background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .content-section {
+          padding: 80px 0;
+        }
+
+        .content-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 60px;
+          margin-bottom: 60px;
+        }
+
+        .content-main h2 {
+          color: var(--navy);
+          margin: 40px 0 20px;
+          font-size: 2rem;
+        }
+
+        .content-main h2:first-child {
+          margin-top: 0;
+        }
+
+        .content-main p {
+          margin-bottom: 20px;
+          color: var(--gray);
+          font-size: 1.1rem;
+        }
+
+        .feature-list {
+          list-style: none;
+          margin: 20px 0;
+        }
+
+        .feature-list li {
+          padding: 10px 0;
+          padding-left: 30px;
+          position: relative;
+          color: var(--gray);
+        }
+
+        .feature-list li:before {
+          content: "✓";
+          position: absolute;
+          left: 0;
+          color: var(--emerald);
+          font-weight: bold;
+          font-size: 1.2rem;
+        }
+
+        .stat-card {
+          background: var(--light-gray);
+          padding: 30px;
+          border-radius: 16px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .stat-number {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--emerald-dark);
+          margin-bottom: 10px;
+        }
+
+        .stat-label {
+          color: var(--gray);
+          font-size: 1rem;
+        }
+
+        .cta-section {
+          text-align: center;
+          padding: 60px;
+          background: var(--light-gray);
+          border-radius: 16px;
+          margin-top: 60px;
+        }
+
+        .cta-section h2 {
+          margin-bottom: 20px;
+          color: var(--navy);
+        }
+
+        .cta-section p {
+          margin-bottom: 30px;
+          color: var(--gray);
+          font-size: 1.2rem;
+        }
+
+        .cta-buttons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+        }
+
+        .glow-button {
+          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+          color: var(--white);
+          padding: 16px 32px;
+          border: none;
+          border-radius: 50px;
+          font-size: 18px;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-block;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px 0 rgba(16, 185, 129, 0.4);
+        }
+
+        .glow-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.6);
+        }
+
+        .glow-button-outline {
+          background: transparent;
+          color: var(--navy);
+          border: 2px solid var(--navy);
+          padding: 14px 30px;
+          border-radius: 50px;
+          font-size: 18px;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-block;
+          transition: all 0.3s ease;
+        }
+
+        .glow-button-outline:hover {
+          background: var(--navy);
+          color: white;
+        }
+
+        @media (max-width: 768px) {
+          .nav-links {
+            display: none;
+          }
+
+          .page-hero h1 {
+            font-size: 2rem;
+          }
+
+          .content-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+
+          .cta-buttons {
+            flex-direction: column;
+          }
+        }
       `}</style>
     </>
   )
