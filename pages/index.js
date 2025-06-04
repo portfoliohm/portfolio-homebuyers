@@ -55,7 +55,6 @@ export default function Home() {
               <Link href="/about">About</Link>
               <Link href="/process">Process</Link>
               <Link href="/reviews">Reviews</Link>
-              <Link href="/contact">Contact</Link>
               <Link href="#offer-form" className="nav-cta">Sell Now</Link>
             </div>
           </div>
