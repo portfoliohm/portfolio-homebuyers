@@ -55,6 +55,7 @@ export default function Home() {
               <Link href="/about">About</Link>
               <Link href="/process">Process</Link>
               <Link href="/reviews">Reviews</Link>
+              <Link href="/contact">Contact</Link>
               <Link href="#offer-form" className="nav-cta">Sell Now</Link>
             </div>
           </div>
@@ -246,6 +247,7 @@ export default function Home() {
                 Get Your <span className="gradient-text">No-Obligation Cash Offer</span>
               </h2>
               
+              {/* Native HTML Form - Vercel will auto-detect and handle */}
               <form 
                 name="portfolio-lead"
                 method="POST"
@@ -259,6 +261,38 @@ export default function Home() {
                     Don't fill this out: <input name="bot-field" />
                   </label>
                 </p>
+                
+                <div className="form-group">
+                  <label htmlFor="name">Your Name</label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    id="name"
+                    required
+                  />
+                </div>
+                
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input 
+                      type="email" 
+                      name="email"
+                      id="email"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone</label>
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      id="phone"
+                      required
+                    />
+                  </div>
+                </div>
                 
                 <div className="form-grid">
                   <div className="form-group">
@@ -307,7 +341,7 @@ export default function Home() {
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="portfolio-value">Total Portfolio Asking Price (Estimate)</label>
+                  <label htmlFor="portfolio-value">Total Portfolio Asking Price (Ballpark)</label>
                   <input 
                     type="text" 
                     name="portfolio-value" 
@@ -328,36 +362,20 @@ export default function Home() {
                   ></textarea>
                 </div>
                 
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label htmlFor="name">Your Name</label>
-                    <input 
-                      type="text" 
-                      name="name"
-                      id="name"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input 
-                      type="email" 
-                      name="email"
-                      id="email"
-                      required
-                    />
-                  </div>
-                </div>
-                
                 <div className="form-group">
-                  <label htmlFor="phone">Phone</label>
+                  <label htmlFor="picture-link">
+                    Link to Property Pictures 
+                    <span style={{ fontWeight: 'normal', fontSize: '0.9rem', color: 'var(--gray)' }}> (Optional)</span>
+                  </label>
                   <input 
-                    type="tel" 
-                    name="phone"
-                    id="phone"
-                    required
+                    type="url" 
+                    name="picture-link"
+                    id="picture-link"
+                    placeholder="https://drive.google.com/your-folder-link or https://dropbox.com/your-folder"
                   />
+                  <p style={{ fontSize: '0.85rem', color: 'var(--gray)', marginTop: '5px' }}>
+                    Share a link to Google Drive, Dropbox, or any cloud storage with your property photos
+                  </p>
                 </div>
 
                 <input type="hidden" name="source" value="main-landing" />
@@ -503,6 +521,7 @@ export default function Home() {
                   <li><Link href="/about">About Us</Link></li>
                   <li><Link href="/process">Our Process</Link></li>
                   <li><Link href="/reviews">Reviews</Link></li>
+                  <li><Link href="/contact">Contact</Link></li>
                   <li><Link href="/partners">Partners</Link></li>
                 </ul>
               </div>
@@ -539,8 +558,8 @@ export default function Home() {
         :root {
           --navy: #0f172a;
           --navy-light: #1e293b;
-          --gold: #fbbf24;
-          --gold-dark: #f59e0b;
+          --emerald: #10b981;
+          --emerald-dark: #059669;
           --gray: #64748b;
           --light-gray: #f1f5f9;
           --white: #ffffff;
@@ -593,20 +612,20 @@ export default function Home() {
         }
 
         .nav-links a:hover {
-          color: var(--gold);
+          color: var(--emerald);
         }
 
         .nav-cta {
-          background: var(--gold);
-          color: var(--navy) !important;
+          background: var(--emerald);
+          color: var(--white) !important;
           padding: 0.5rem 1.5rem;
           border-radius: 50px;
           font-weight: 600;
         }
 
         .nav-cta:hover {
-          background: var(--gold-dark);
-          color: var(--navy) !important;
+          background: var(--emerald-dark);
+          color: var(--white) !important;
         }
 
         /* 3D House Background */
@@ -618,7 +637,7 @@ export default function Home() {
           top: 50%;
           transform: translateY(-50%);
           opacity: 0.1;
-          background: linear-gradient(135deg, var(--gold) 0%, transparent 50%);
+          background: linear-gradient(135deg, var(--emerald) 0%, transparent 50%);
           clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
           animation: float 20s ease-in-out infinite;
         }
@@ -627,7 +646,7 @@ export default function Home() {
           content: '';
           position: absolute;
           inset: 20px;
-          background: linear-gradient(45deg, transparent 30%, var(--gold) 50%, transparent 70%);
+          background: linear-gradient(45deg, transparent 30%, var(--emerald) 50%, transparent 70%);
           clip-path: inherit;
           animation: shimmer 3s ease-in-out infinite;
         }
@@ -643,7 +662,7 @@ export default function Home() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+          background: radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
           pointer-events: none;
         }
 
@@ -653,7 +672,7 @@ export default function Home() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: radial-gradient(circle at 80% 50%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+          background: radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
           pointer-events: none;
         }
         
@@ -667,15 +686,15 @@ export default function Home() {
         }
         
         .gradient-text {
-          background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+          background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
         
         .glow-button {
-          background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-          color: var(--navy);
+          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+          color: var(--white);
           padding: 16px 32px;
           border: none;
           border-radius: 50px;
@@ -684,13 +703,13 @@ export default function Home() {
           cursor: pointer;
           position: relative;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px 0 rgba(251, 191, 36, 0.4);
+          box-shadow: 0 4px 15px 0 rgba(16, 185, 129, 0.4);
           font-family: 'Satoshi', sans-serif;
         }
         
         .glow-button:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px 0 rgba(251, 191, 36, 0.6);
+          box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.6);
         }
         
         .container {
@@ -738,45 +757,73 @@ export default function Home() {
           grid-template-columns: repeat(3, 1fr);
           gap: 20px;
           margin: 40px auto;
-          max-width: 900px;
+          max-width: 1000px;
         }
 
         .value-prop-secondary {
-          max-width: 600px;
+          max-width: 660px;
           margin: 20px auto 40px;
-          padding: 20px 30px;
+          padding: 25px 35px;
           display: flex;
           align-items: center;
           gap: 20px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .value-prop-secondary h3 {
           margin: 0;
-          font-size: 1.1rem;
+          font-size: 1.2rem;
+          color: white;
         }
 
         .value-prop-secondary p {
           margin: 0;
           opacity: 0.9;
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 1rem;
         }
         
         .value-prop {
-          padding: 20px;
+          padding: 25px;
           text-align: left;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease;
+        }
+
+        .value-prop:hover {
+          background: rgba(255, 255, 255, 0.15);
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .value-prop h3 {
+          color: white;
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+          font-weight: 600;
+        }
+
+        .value-prop p {
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 0.95rem;
+          line-height: 1.5;
         }
         
         .value-prop-icon {
-          width: 40px;
-          height: 40px;
-          background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-          border-radius: 10px;
+          width: 45px;
+          height: 45px;
+          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 15px;
-          font-size: 20px;
-          color: var(--navy);
+          margin-bottom: 20px;
+          font-size: 24px;
+          color: var(--white);
           font-weight: 700;
+          box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
         
         .trust-bar {
@@ -794,7 +841,7 @@ export default function Home() {
         .trust-number {
           font-size: 2rem;
           font-weight: 700;
-          background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -833,7 +880,7 @@ export default function Home() {
         .problem-stat {
           font-size: 2.5rem;
           font-weight: 700;
-          color: var(--gold-dark);
+          color: var(--emerald-dark);
           margin-bottom: 10px;
         }
         
@@ -861,7 +908,7 @@ export default function Home() {
         
         .strategy-card:hover {
           transform: translateY(-10px);
-          border-color: var(--gold);
+          border-color: var(--emerald);
         }
         
         .strategy-number {
@@ -903,7 +950,7 @@ export default function Home() {
         .step-number {
           width: 60px;
           height: 60px;
-          background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -911,7 +958,7 @@ export default function Home() {
           font-size: 1.5rem;
           font-weight: 700;
           margin: 0 auto 20px;
-          color: var(--navy);
+          color: var(--white);
         }
         
         .form-section {
@@ -963,8 +1010,8 @@ export default function Home() {
         
         input:focus, select:focus, textarea:focus {
           outline: none;
-          border-color: var(--gold);
-          box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+          border-color: var(--emerald);
+          box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
         }
         
         .checkbox-group {
@@ -988,7 +1035,7 @@ export default function Home() {
         .testimonial-card {
           padding: 30px;
           margin: 20px 0;
-          border-left: 4px solid var(--gold);
+          border-left: 4px solid var(--emerald);
           background: white !important;
         }
         
@@ -1010,6 +1057,7 @@ export default function Home() {
           text-align: center;
           margin-bottom: 20px;
           line-height: 1.2;
+          white-space: nowrap;
         }
         
         .section-subtitle {
@@ -1018,6 +1066,7 @@ export default function Home() {
           color: var(--gray);
           max-width: 800px;
           margin: 0 auto;
+          white-space: nowrap;
         }
 
         /* Calculator Styles */
@@ -1080,7 +1129,7 @@ export default function Home() {
         .calc-total {
           font-size: 3rem;
           font-weight: 700;
-          color: var(--gold);
+          color: var(--emerald);
           margin-bottom: 10px;
         }
 
@@ -1105,7 +1154,7 @@ export default function Home() {
 
         .footer-column h4 {
           margin-bottom: 20px;
-          color: var(--gold);
+          color: var(--emerald);
         }
 
         .footer-column ul {
@@ -1125,14 +1174,14 @@ export default function Home() {
 
         .footer-column a:hover {
           opacity: 1;
-          color: var(--gold);
+          color: var(--emerald);
         }
 
         .footer-cta {
           display: inline-block;
           margin-top: 15px;
-          background: var(--gold);
-          color: var(--navy);
+          background: var(--emerald);
+          color: var(--white);
           padding: 10px 25px;
           border-radius: 50px;
           text-decoration: none;
@@ -1141,7 +1190,7 @@ export default function Home() {
         }
 
         .footer-cta:hover {
-          background: var(--gold-dark);
+          background: var(--emerald-dark);
           transform: translateY(-2px);
         }
 
@@ -1217,6 +1266,16 @@ export default function Home() {
             width: 400px;
             height: 400px;
             right: -200px;
+          }
+          
+          .section-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            white-space: normal;
+          }
+          
+          .section-subtitle {
+            font-size: 1rem;
+            white-space: normal;
           }
         }
       `}</style>
