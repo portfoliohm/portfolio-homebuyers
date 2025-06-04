@@ -562,4 +562,97 @@ export default function Partners() {
 
         .footer-grid {
           display: grid;
-          grid-template-columns: repeat(
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 40px;
+          margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+          margin-bottom: 20px;
+          color: var(--emerald);
+        }
+
+        .footer-column ul {
+          list-style: none;
+        }
+
+        .footer-column ul li {
+          margin-bottom: 10px;
+        }
+
+        .footer-column a {
+          color: white;
+          text-decoration: none;
+          opacity: 0.8;
+          transition: all 0.3s;
+        }
+
+        .footer-column a:hover {
+          opacity: 1;
+          color: var(--emerald);
+        }
+
+        .footer-cta {
+          display: inline-block;
+          margin-top: 15px;
+          background: var(--emerald);
+          color: var(--white);
+          padding: 10px 25px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s;
+        }
+
+        .footer-cta:hover {
+          background: var(--emerald-dark);
+          transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+          padding-top: 30px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .footer-links {
+          display: flex;
+          gap: 30px;
+        }
+
+        .footer-links a {
+          color: white;
+          text-decoration: none;
+          opacity: 0.8;
+          transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+          opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+          .nav-links {
+            display: none;
+          }
+
+          .benefits-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .partner-steps {
+            grid-template-columns: 1fr;
+          }
+
+          .form-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .footer-bottom {
+            flex-direction: column;
+            gap: 20px;
+          }
+        }
