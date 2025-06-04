@@ -92,6 +92,22 @@ export default function Reviews() {
               <div className="review-card glass-card">
                 <div className="review-header">
                   <div className="reviewer-info">
+                    <h3>Jennifer L.</h3>
+                    <p>Retiring Investor</p>
+                  </div>
+                  <div className="review-meta">
+                    <span className="properties">6 Properties</span>
+                    <span className="savings">Saved $42,000</span>
+                  </div>
+                </div>
+                <p className="review-text">
+                  "After 15 years of rental management, I wanted to simplify my retirement. Portfolio Homebuyers bought my entire portfolio in one clean transaction. No repairs, no showings, no stress. Just the freedom I was looking for."
+                </p>
+              </div>
+
+              <div className="review-card glass-card">
+                <div className="review-header">
+                  <div className="reviewer-info">
                     <h3>Michael T.</h3>
                     <p>Fix & Flip Investor</p>
                   </div>
