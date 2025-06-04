@@ -1,13 +1,13 @@
-// pages/process.js
+// pages/about.js
 import Head from 'next/head'
 import Link from 'next/link'
 
-export default function Process() {
+export default function About() {
   return (
     <>
       <Head>
-        <title>Our Process | How Portfolio Homebuyers Works</title>
-        <meta name="description" content="Learn how Portfolio Homebuyers makes selling your investment properties fast, easy, and profitable. Our simple 4-step process explained." />
+        <title>About Portfolio Homebuyers | Cash Home Buyers for Investors</title>
+        <meta name="description" content="Learn about Portfolio Homebuyers - the trusted cash buyer for real estate investors looking to exit their portfolios quickly and efficiently." />
         <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet" />
       </Head>
 
@@ -26,109 +26,63 @@ export default function Process() {
       <main className="page-content">
         <section className="page-hero">
           <div className="container">
-            <h1>Our <span className="gradient-text">Simple Process</span></h1>
-            <p className="hero-subtitle">From first contact to cash in hand in as little as 7 days</p>
+            <h1>About <span className="gradient-text">Portfolio Homebuyers</span></h1>
+            <p className="hero-subtitle">The investor's choice for portfolio liquidation since 2015</p>
           </div>
         </section>
 
         <section className="content-section">
           <div className="container">
-            <div className="process-timeline">
-              <div className="timeline-item">
-                <div className="timeline-number">1</div>
-                <div className="timeline-content">
-                  <h3>Submit Your Portfolio Information</h3>
-                  <p className="timeline-time">Time: 5 minutes</p>
-                  <p>Fill out our simple form with basic details about your properties. Include addresses, property types, and your timeline. No lengthy questionnaires or complicated paperwork.</p>
-                  <ul>
-                    <li>Property addresses and types</li>
-                    <li>Current condition (we buy AS-IS)</li>
-                    <li>Your preferred timeline</li>
-                    <li>Any special circumstances</li>
-                  </ul>
-                </div>
+            <div className="content-grid">
+              <div className="content-main">
+                <h2>Who We Are</h2>
+                <p>Portfolio Homebuyers was founded by real estate investors, for real estate investors. We understand the unique challenges of managing investment properties because we've been there ourselves.</p>
+                
+                <p>Unlike traditional home buyers who focus on single-family residences, we specialize in purchasing entire portfolios, distressed properties, and complex investment situations that others won't touch.</p>
+
+                <h2>Our Mission</h2>
+                <p>To provide real estate investors with a fast, fair, and flexible exit strategy that maximizes value and minimizes hassle.</p>
+
+                <h2>Why Investors Choose Us</h2>
+                <ul className="feature-list">
+                  <li><strong>Speed:</strong> Cash offers in 24 hours, close in as little as 7 days</li>
+                  <li><strong>Flexibility:</strong> Buy single properties or entire portfolios</li>
+                  <li><strong>Simplicity:</strong> No repairs, no showings, no commissions</li>
+                  <li><strong>Expertise:</strong> We understand investment property challenges</li>
+                  <li><strong>Reliability:</strong> Over $47M in properties purchased</li>
+                </ul>
+
+                <h2>Our Team</h2>
+                <p>Our acquisition team consists of experienced real estate professionals who understand portfolio management, property valuation, and the unique needs of real estate investors.</p>
               </div>
 
-              <div className="timeline-item">
-                <div className="timeline-number">2</div>
-                <div className="timeline-content">
-                  <h3>Receive Your Cash Offers</h3>
-                  <p className="timeline-time">Time: Within 24 hours</p>
-                  <p>Our team analyzes each property individually using current market data, comparable sales, and our extensive experience. You'll receive fair cash offers for each property.</p>
-                  <ul>
-                    <li>Individual property valuations</li>
-                    <li>Package deal options</li>
-                    <li>Flexible terms</li>
-                    <li>No obligation to accept</li>
-                  </ul>
+              <div className="content-sidebar">
+                <div className="stat-card">
+                  <div className="stat-number">$47M+</div>
+                  <div className="stat-label">Properties Purchased</div>
                 </div>
-              </div>
-
-              <div className="timeline-item">
-                <div className="timeline-number">3</div>
-                <div className="timeline-content">
-                  <h3>Choose Your Exit Strategy</h3>
-                  <p className="timeline-time">Time: Your decision</p>
-                  <p>Review our offers at your pace. Accept all properties, select specific ones, or negotiate terms. We're flexible and work with your goals.</p>
-                  <ul>
-                    <li>Sell entire portfolio</li>
-                    <li>Cherry-pick properties</li>
-                    <li>Negotiate terms</li>
-                    <li>No pressure tactics</li>
-                  </ul>
+                <div className="stat-card">
+                  <div className="stat-number">500+</div>
+                  <div className="stat-label">Happy Investors</div>
                 </div>
-              </div>
-
-              <div className="timeline-item">
-                <div className="timeline-number">4</div>
-                <div className="timeline-content">
-                  <h3>Close and Get Paid</h3>
-                  <p className="timeline-time">Time: 7-30 days (your choice)</p>
-                  <p>Once you accept, we handle everything. No repairs, no showings, no realtor commissions. Close on your timeline and receive your funds.</p>
-                  <ul>
-                    <li>We handle all paperwork</li>
-                    <li>Use your title company or ours</li>
-                    <li>Funds wired at closing</li>
-                    <li>Done deal!</li>
-                  </ul>
+                <div className="stat-card">
+                  <div className="stat-number">10+</div>
+                  <div className="stat-label">Years Experience</div>
                 </div>
-              </div>
-            </div>
-
-            <div className="comparison-section">
-              <h2>Traditional Sale vs. Portfolio Homebuyers</h2>
-              <div className="comparison-grid">
-                <div className="comparison-card traditional">
-                  <h3>Traditional Sale</h3>
-                  <ul className="comparison-list cons">
-                    <li>List with realtor (6% commission)</li>
-                    <li>Make repairs and updates</li>
-                    <li>Stage and show properties</li>
-                    <li>Wait 4-6 months average</li>
-                    <li>Deal with buyer financing falling through</li>
-                    <li>Negotiate repairs after inspection</li>
-                    <li>Pay holding costs entire time</li>
-                  </ul>
-                </div>
-                <div className="comparison-card our-way">
-                  <h3>Portfolio Homebuyers</h3>
-                  <ul className="comparison-list pros">
-                    <li>Direct sale (0% commission)</li>
-                    <li>Buy AS-IS condition</li>
-                    <li>No showings needed</li>
-                    <li>Close in 7-30 days</li>
-                    <li>Cash offer - no financing contingency</li>
-                    <li>No inspection negotiations</li>
-                    <li>Stop paying holding costs fast</li>
-                  </ul>
+                <div className="stat-card">
+                  <div className="stat-number">19</div>
+                  <div className="stat-label">Day Avg Close Time</div>
                 </div>
               </div>
             </div>
 
             <div className="cta-section">
-              <h2>Ready to Get Started?</h2>
-              <p>The first step takes just 5 minutes.</p>
-              <Link href="/#offer-form" className="glow-button">Get Your Cash Offer →</Link>
+              <h2>Ready to Learn More?</h2>
+              <p>See how our process works or get your cash offer today.</p>
+              <div className="cta-buttons">
+                <Link href="/process" className="glow-button">Our Process →</Link>
+                <Link href="/#offer-form" className="glow-button-outline">Get Cash Offer →</Link>
+              </div>
             </div>
           </div>
         </section>
@@ -244,142 +198,68 @@ export default function Process() {
           padding: 80px 0;
         }
 
-        .process-timeline {
-          margin: 60px 0;
-        }
-
-        .timeline-item {
-          display: flex;
-          gap: 40px;
-          margin-bottom: 60px;
-          position: relative;
-        }
-
-        .timeline-item:not(:last-child):after {
-          content: '';
-          position: absolute;
-          left: 30px;
-          top: 70px;
-          width: 2px;
-          height: calc(100% + 40px);
-          background: var(--light-gray);
-        }
-
-        .timeline-number {
-          width: 60px;
-          height: 60px;
-          background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: var(--white);
-          flex-shrink: 0;
-        }
-
-        .timeline-content {
-          flex: 1;
-        }
-
-        .timeline-content h3 {
-          color: var(--navy);
-          margin-bottom: 10px;
-          font-size: 1.5rem;
-        }
-
-        .timeline-time {
-          color: var(--emerald-dark);
-          font-weight: 600;
-          margin-bottom: 20px;
-        }
-
-        .timeline-content p {
-          color: var(--gray);
-          margin-bottom: 20px;
-        }
-
-        .timeline-content ul {
-          list-style: none;
-        }
-
-        .timeline-content li {
-          padding: 5px 0;
-          padding-left: 25px;
-          position: relative;
-          color: var(--gray);
-        }
-
-        .timeline-content li:before {
-          content: "•";
-          position: absolute;
-          left: 10px;
-          color: var(--emerald);
-        }
-
-        .comparison-section {
-          margin: 80px 0;
-        }
-
-        .comparison-section h2 {
-          text-align: center;
-          margin-bottom: 40px;
-          font-size: 2.5rem;
-          color: var(--navy);
-        }
-
-        .comparison-grid {
+        .content-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
+          grid-template-columns: 2fr 1fr;
+          gap: 60px;
+          margin-bottom: 60px;
         }
 
-        .comparison-card {
-          padding: 40px;
-          border-radius: 16px;
+        .content-main h2 {
+          color: var(--navy);
+          margin: 40px 0 20px;
+          font-size: 2rem;
         }
 
-        .comparison-card.traditional {
-          background: #fee2e2;
+        .content-main h2:first-child {
+          margin-top: 0;
         }
 
-        .comparison-card.our-way {
-          background: #dcfce7;
+        .content-main p {
+          margin-bottom: 20px;
+          color: var(--gray);
+          font-size: 1.1rem;
         }
 
-        .comparison-card h3 {
-          margin-bottom: 30px;
-          font-size: 1.5rem;
-          text-align: center;
-        }
-
-        .comparison-list {
+        .feature-list {
           list-style: none;
+          margin: 20px 0;
         }
 
-        .comparison-list li {
+        .feature-list li {
           padding: 10px 0;
           padding-left: 30px;
           position: relative;
+          color: var(--gray);
         }
 
-        .comparison-list.cons li:before {
-          content: "✗";
-          position: absolute;
-          left: 0;
-          color: #ef4444;
-          font-weight: bold;
-          font-size: 1.2rem;
-        }
-
-        .comparison-list.pros li:before {
+        .feature-list li:before {
           content: "✓";
           position: absolute;
           left: 0;
-          color: #10b981;
+          color: var(--emerald);
           font-weight: bold;
           font-size: 1.2rem;
+        }
+
+        .stat-card {
+          background: var(--light-gray);
+          padding: 30px;
+          border-radius: 16px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .stat-number {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--emerald-dark);
+          margin-bottom: 10px;
+        }
+
+        .stat-label {
+          color: var(--gray);
+          font-size: 1rem;
         }
 
         .cta-section {
@@ -399,6 +279,12 @@ export default function Process() {
           margin-bottom: 30px;
           color: var(--gray);
           font-size: 1.2rem;
+        }
+
+        .cta-buttons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
         }
 
         .glow-button {
@@ -421,22 +307,41 @@ export default function Process() {
           box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.6);
         }
 
+        .glow-button-outline {
+          background: transparent;
+          color: var(--navy);
+          border: 2px solid var(--navy);
+          padding: 14px 30px;
+          border-radius: 50px;
+          font-size: 18px;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-block;
+          transition: all 0.3s ease;
+        }
+
+        .glow-button-outline:hover {
+          background: var(--navy);
+          color: white;
+        }
+
         @media (max-width: 768px) {
           .nav-links {
             display: none;
           }
 
-          .timeline-item {
-            flex-direction: column;
-            gap: 20px;
+          .page-hero h1 {
+            font-size: 2rem;
           }
 
-          .timeline-item:not(:last-child):after {
-            display: none;
-          }
-
-          .comparison-grid {
+          .content-grid {
             grid-template-columns: 1fr;
+            gap: 40px;
+          }
+
+          .cta-buttons {
+            flex-direction: column;
           }
         }
       `}</style>
