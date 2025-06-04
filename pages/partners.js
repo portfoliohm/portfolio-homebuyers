@@ -656,3 +656,7 @@ export default function Partners() {
             gap: 20px;
           }
         }
+      `}</style>
+    </>
+  )
+}
