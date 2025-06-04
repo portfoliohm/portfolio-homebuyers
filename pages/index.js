@@ -1,8 +1,33 @@
 // pages/index.js
 import Head from 'next/head'
 import Script from 'next/script'
+import { useState } from 'react'
+import Link from 'next/link'
 
 export default function Home() {
+  const [showCalculator, setShowCalculator] = useState(false)
+  const [holdingCosts, setHoldingCosts] = useState({
+    propertyValue: '',
+    monthlyTaxes: '',
+    monthlyInsurance: '',
+    monthlyMaintenance: '',
+    monthlyManagement: '',
+    monthsToSell: '6'
+  })
+  const [totalCost, setTotalCost] = useState(0)
+
+  const calculateHoldingCosts = () => {
+    const monthly = 
+      parseFloat(holdingCosts.monthlyTaxes || 0) +
+      parseFloat(holdingCosts.monthlyInsurance || 0) +
+      parseFloat(holdingCosts.monthlyMaintenance || 0) +
+      parseFloat(holdingCosts.monthlyManagement || 0)
+    
+    const total = monthly * parseInt(holdingCosts.monthsToSell)
+    setTotalCost(total)
+    setShowCalculator(true)
+  }
+
   const scrollToForm = () => {
     document.getElementById('offer-form').scrollIntoView({ behavior: 'smooth' })
   }
@@ -14,24 +39,37 @@ export default function Home() {
         <meta name="description" content="Exit your investment properties on your terms. Cash offers, flexible closing, bulk deals welcome. No repairs needed. Close in 7-30 days. Get your offer today." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet" />
       </Head>
 
-      {/* Vercel Web Analytics - Auto-installed with Vercel */}
       <Script src="https://va.vercel-scripts.com/v1/script.debug.js" />
 
       <main>
+        {/* Navigation */}
+        <nav className="navbar">
+          <div className="container nav-container">
+            <Link href="/" className="logo">
+              Portfolio Homebuyers
+            </Link>
+            <div className="nav-links">
+              <Link href="/about">About</Link>
+              <Link href="/process">Process</Link>
+              <Link href="/reviews">Reviews</Link>
+              <Link href="#offer-form" className="nav-cta">Sell Now</Link>
+            </div>
+          </div>
+        </nav>
+
         {/* Hero Section */}
         <section className="hero">
-          <div className="ai-glow"></div>
-          <div className="float-1"></div>
-          <div className="float-2"></div>
+          <div className="house-3d"></div>
+          <div className="gradient-overlay"></div>
           
           <div className="container">
             <div className="hero-content">
               <h1>Exit Your Investment Properties <span className="gradient-text">Without The Hassle</span></h1>
               <p className="hero-subtitle">
-                We buy rental portfolios, fix-and-flips, and investment properties AS-IS. 
-                Single properties, packages, or entire portfolios. Cash offers in 24 hours.
+                We buy rental portfolios AS-IS. Single properties, packages, or entire portfolios. Cash offers in 24 hours.
               </p>
               
               <button className="glow-button" onClick={scrollToForm}>
@@ -54,11 +92,12 @@ export default function Home() {
                   <h3>Flexible Terms</h3>
                   <p>Close on your timeline (7-30 days)</p>
                 </div>
-                <div className="value-prop glass-card">
-                  <div className="value-prop-icon">✓</div>
-                  <h3>Fair Cash Offers</h3>
-                  <p>Based on actual market data</p>
-                </div>
+              </div>
+
+              <div className="value-prop-secondary glass-card">
+                <div className="value-prop-icon">✓</div>
+                <h3>Fair Cash Offers</h3>
+                <p>Based on actual market data and current conditions</p>
               </div>
               
               <div className="trust-bar">
@@ -71,8 +110,8 @@ export default function Home() {
                   <div className="trust-label">Investors Served</div>
                 </div>
                 <div className="trust-item">
-                  <div className="trust-number">A+</div>
-                  <div className="trust-label">BBB Rating</div>
+                  <div className="trust-number">19 Days</div>
+                  <div className="trust-label">Average Close Time</div>
                 </div>
               </div>
             </div>
@@ -136,7 +175,7 @@ export default function Home() {
 
         {/* Process Section */}
         <section className="process-section">
-          <div className="ai-glow"></div>
+          <div className="gradient-overlay-light"></div>
           <div className="container">
             <h2 className="section-title">How It Works</h2>
             <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.9)' }}>
@@ -199,16 +238,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Form Section - Using Native HTML Form */}
+        {/* Form Section */}
         <section className="form-section" id="offer-form">
           <div className="container">
             <div className="form-container glass-card">
-              <div className="float-3"></div>
               <h2 className="section-title">
                 Get Your <span className="gradient-text">No-Obligation Cash Offer</span>
               </h2>
               
-              {/* Native HTML Form - Vercel will auto-detect and handle */}
               <form 
                 name="portfolio-lead"
                 method="POST"
@@ -216,7 +253,6 @@ export default function Home() {
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
               >
-                {/* Honeypot field for spam protection */}
                 <input type="hidden" name="form-name" value="portfolio-lead" />
                 <p hidden>
                   <label>
@@ -224,15 +260,28 @@ export default function Home() {
                   </label>
                 </p>
                 
-                <div className="form-group">
-                  <label htmlFor="properties">Number of Properties</label>
-                  <select name="properties" id="properties" required>
-                    <option value="">Select...</option>
-                    <option value="1">1 Property</option>
-                    <option value="2-5">2-5 Properties</option>
-                    <option value="6-10">6-10 Properties</option>
-                    <option value="10+">10+ Properties</option>
-                  </select>
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label htmlFor="properties">Number of Properties</label>
+                    <select name="properties" id="properties" required>
+                      <option value="">Select...</option>
+                      <option value="1">1 Property</option>
+                      <option value="2-5">2-5 Properties</option>
+                      <option value="6-10">6-10 Properties</option>
+                      <option value="10+">10+ Properties</option>
+                    </select>
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="timeline">Timeline to Sell</label>
+                    <select name="timeline" id="timeline" required>
+                      <option value="">Select...</option>
+                      <option value="asap">ASAP</option>
+                      <option value="30">Within 30 days</option>
+                      <option value="60">Within 60 days</option>
+                      <option value="exploring">Just exploring options</option>
+                    </select>
+                  </div>
                 </div>
                 
                 <div className="form-group">
@@ -258,7 +307,7 @@ export default function Home() {
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="portfolio-value">Total Portfolio Value (Estimate)</label>
+                  <label htmlFor="portfolio-value">Total Portfolio Asking Price (Estimate)</label>
                   <input 
                     type="text" 
                     name="portfolio-value" 
@@ -267,36 +316,38 @@ export default function Home() {
                     required
                   />
                 </div>
-                
+
                 <div className="form-group">
-                  <label htmlFor="timeline">Timeline to Sell</label>
-                  <select name="timeline" id="timeline" required>
-                    <option value="">Select...</option>
-                    <option value="asap">ASAP</option>
-                    <option value="30">Within 30 days</option>
-                    <option value="60">Within 60 days</option>
-                    <option value="exploring">Just exploring options</option>
-                  </select>
+                  <label htmlFor="addresses">Property Addresses</label>
+                  <textarea 
+                    name="addresses" 
+                    id="addresses"
+                    rows="4"
+                    placeholder="Enter one address per line&#10;123 Main St, City, State ZIP&#10;456 Oak Ave, City, State ZIP"
+                    required
+                  ></textarea>
                 </div>
                 
-                <div className="form-group">
-                  <label htmlFor="name">Your Name</label>
-                  <input 
-                    type="text" 
-                    name="name"
-                    id="name"
-                    required
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input 
-                    type="email" 
-                    name="email"
-                    id="email"
-                    required
-                  />
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label htmlFor="name">Your Name</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      id="name"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input 
+                      type="email" 
+                      name="email"
+                      id="email"
+                      required
+                    />
+                  </div>
                 </div>
                 
                 <div className="form-group">
@@ -309,11 +360,10 @@ export default function Home() {
                   />
                 </div>
 
-                {/* Hidden fields for tracking */}
                 <input type="hidden" name="source" value="main-landing" />
                 <input type="hidden" name="timestamp" value={new Date().toISOString()} />
                 
-                <button type="submit" className="glow-button" style={{ width: '100%', marginTop: '20px' }}>
+                <button type="submit" className="glow-button" style={{ width: '100%', marginTop: '30px' }}>
                   Get My Cash Offer →
                 </button>
                 
@@ -336,29 +386,147 @@ export default function Home() {
             </p>
             
             <div style={{ textAlign: 'center', marginTop: '40px' }}>
-              <button className="glow-button" onClick={() => window.location.href='/partners'}>
+              <Link href="/partners" className="glow-button">
                 Become a Preferred Partner →
-              </button>
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="process-section" style={{ padding: '60px 0' }}>
+        {/* Calculator Section */}
+        <section className="process-section" style={{ padding: '80px 0' }}>
           <div className="container" style={{ textAlign: 'center' }}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '20px' }}>
+            <h2 style={{ fontSize: '2rem', marginBottom: '20px', color: 'white' }}>
               Every Day You Wait <span className="gradient-text">Costs You Money</span>
             </h2>
-            <p style={{ fontSize: '1.2rem', opacity: 0.9, marginBottom: '30px' }}>
+            <p style={{ fontSize: '1.2rem', opacity: 0.9, marginBottom: '30px', color: 'white' }}>
               The average investor loses $61/day on underperforming properties.<br />
               That's $1,847/month. Or $22,164/year.
             </p>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '30px' }}>How much is waiting costing you?</h3>
-            <button className="glow-button" onClick={scrollToForm}>
-              Calculate My Holding Costs →
-            </button>
+            
+            {!showCalculator ? (
+              <>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '30px', color: 'white' }}>
+                  How much is waiting costing you?
+                </h3>
+                <button className="glow-button" onClick={() => setShowCalculator(true)}>
+                  Calculate My Holding Costs →
+                </button>
+              </>
+            ) : (
+              <div className="calculator-container glass-card">
+                <h3>Holding Cost Calculator</h3>
+                <div className="calculator-grid">
+                  <div className="calc-group">
+                    <label>Monthly Property Taxes</label>
+                    <input
+                      type="number"
+                      placeholder="$500"
+                      value={holdingCosts.monthlyTaxes}
+                      onChange={(e) => setHoldingCosts({...holdingCosts, monthlyTaxes: e.target.value})}
+                    />
+                  </div>
+                  <div className="calc-group">
+                    <label>Monthly Insurance</label>
+                    <input
+                      type="number"
+                      placeholder="$200"
+                      value={holdingCosts.monthlyInsurance}
+                      onChange={(e) => setHoldingCosts({...holdingCosts, monthlyInsurance: e.target.value})}
+                    />
+                  </div>
+                  <div className="calc-group">
+                    <label>Monthly Maintenance</label>
+                    <input
+                      type="number"
+                      placeholder="$300"
+                      value={holdingCosts.monthlyMaintenance}
+                      onChange={(e) => setHoldingCosts({...holdingCosts, monthlyMaintenance: e.target.value})}
+                    />
+                  </div>
+                  <div className="calc-group">
+                    <label>Property Management</label>
+                    <input
+                      type="number"
+                      placeholder="$150"
+                      value={holdingCosts.monthlyManagement}
+                      onChange={(e) => setHoldingCosts({...holdingCosts, monthlyManagement: e.target.value})}
+                    />
+                  </div>
+                </div>
+                <div className="calc-group" style={{ marginTop: '20px' }}>
+                  <label>Months to Sell (Traditional)</label>
+                  <select
+                    value={holdingCosts.monthsToSell}
+                    onChange={(e) => setHoldingCosts({...holdingCosts, monthsToSell: e.target.value})}
+                  >
+                    <option value="3">3 months</option>
+                    <option value="6">6 months</option>
+                    <option value="9">9 months</option>
+                    <option value="12">12 months</option>
+                  </select>
+                </div>
+                <button 
+                  className="glow-button" 
+                  style={{ marginTop: '20px' }}
+                  onClick={calculateHoldingCosts}
+                >
+                  Calculate Total Cost
+                </button>
+                
+                {totalCost > 0 && (
+                  <div className="calc-result">
+                    <h4>Total Holding Costs:</h4>
+                    <div className="calc-total">${totalCost.toLocaleString()}</div>
+                    <p>That's what you'll save by selling to us!</p>
+                    <button className="glow-button" onClick={scrollToForm} style={{ marginTop: '20px' }}>
+                      Get My Cash Offer Now →
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </section>
+
+        {/* Footer */}
+        <footer className="footer">
+          <div className="container">
+            <div className="footer-grid">
+              <div className="footer-column">
+                <h4>Portfolio Homebuyers</h4>
+                <p>The fastest, most reliable way to exit your investment properties.</p>
+              </div>
+              <div className="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                  <li><Link href="/about">About Us</Link></li>
+                  <li><Link href="/process">Our Process</Link></li>
+                  <li><Link href="/reviews">Reviews</Link></li>
+                  <li><Link href="/partners">Partners</Link></li>
+                </ul>
+              </div>
+              <div className="footer-column">
+                <h4>Contact</h4>
+                <p>1-800-XXX-XXXX</p>
+                <p>info@portfoliohomebuyers.com</p>
+                <p>Available 7 days a week</p>
+              </div>
+              <div className="footer-column">
+                <h4>Get Started</h4>
+                <p>Ready to sell your portfolio?</p>
+                <Link href="#offer-form" className="footer-cta">Get Cash Offer →</Link>
+              </div>
+            </div>
+            <div className="footer-bottom">
+              <p>&copy; 2025 Portfolio Homebuyers. All rights reserved.</p>
+              <div className="footer-links">
+                <Link href="/privacy">Privacy Policy</Link>
+                <Link href="/terms">Terms of Service</Link>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
 
       <style jsx global>{`
@@ -369,61 +537,145 @@ export default function Home() {
         }
         
         :root {
-          --primary: #6366f1;
-          --secondary: #8b5cf6;
-          --accent: #ec4899;
-          --dark: #0f172a;
-          --light: #f8fafc;
+          --navy: #0f172a;
+          --navy-light: #1e293b;
+          --gold: #fbbf24;
+          --gold-dark: #f59e0b;
           --gray: #64748b;
+          --light-gray: #f1f5f9;
+          --white: #ffffff;
+          --success: #10b981;
         }
         
         body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           line-height: 1.6;
-          color: var(--dark);
-          background: var(--light);
+          color: var(--navy);
+          background: var(--white);
           overflow-x: hidden;
         }
-        
-        .ai-glow {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%);
-          background-size: 400% 400%;
-          animation: gradient-shift 10s ease infinite;
-          filter: blur(40px);
-          opacity: 0.3;
-          position: absolute;
-          width: 100%;
-          height: 100%;
+
+        /* Navigation */
+        .navbar {
+          position: fixed;
           top: 0;
-          left: 0;
-          z-index: -1;
+          width: 100%;
+          background: rgba(15, 23, 42, 0.95);
+          backdrop-filter: blur(10px);
+          z-index: 1000;
+          padding: 1rem 0;
+        }
+
+        .nav-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: white;
+          text-decoration: none;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 2rem;
+          align-items: center;
+        }
+
+        .nav-links a {
+          color: white;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+          color: var(--gold);
+        }
+
+        .nav-cta {
+          background: var(--gold);
+          color: var(--navy) !important;
+          padding: 0.5rem 1.5rem;
+          border-radius: 50px;
+          font-weight: 600;
+        }
+
+        .nav-cta:hover {
+          background: var(--gold-dark);
+          color: var(--navy) !important;
+        }
+
+        /* 3D House Background */
+        .house-3d {
+          position: absolute;
+          width: 600px;
+          height: 600px;
+          right: -100px;
+          top: 50%;
+          transform: translateY(-50%);
+          opacity: 0.1;
+          background: linear-gradient(135deg, var(--gold) 0%, transparent 50%);
+          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+          animation: float 20s ease-in-out infinite;
+        }
+
+        .house-3d::before {
+          content: '';
+          position: absolute;
+          inset: 20px;
+          background: linear-gradient(45deg, transparent 30%, var(--gold) 50%, transparent 70%);
+          clip-path: inherit;
+          animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
         }
         
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        .gradient-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+          pointer-events: none;
+        }
+
+        .gradient-overlay-light {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 80% 50%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+          pointer-events: none;
         }
         
         .glass-card {
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 16px;
-          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
         
         .gradient-text {
-          background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+          background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
         
         .glow-button {
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          color: white;
+          background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+          color: var(--navy);
           padding: 16px 32px;
           border: none;
           border-radius: 50px;
@@ -432,31 +684,13 @@ export default function Home() {
           cursor: pointer;
           position: relative;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px 0 rgba(99, 102, 241, 0.4);
+          box-shadow: 0 4px 15px 0 rgba(251, 191, 36, 0.4);
+          font-family: 'Satoshi', sans-serif;
         }
         
         .glow-button:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.6);
-        }
-        
-        .glow-button::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          border-radius: 50px;
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          filter: blur(10px);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          z-index: -1;
-        }
-        
-        .glow-button:hover::before {
-          opacity: 0.6;
+          box-shadow: 0 6px 20px 0 rgba(251, 191, 36, 0.6);
         }
         
         .container {
@@ -467,10 +701,11 @@ export default function Home() {
         
         .hero {
           min-height: 100vh;
+          padding-top: 80px;
           display: flex;
           align-items: center;
           position: relative;
-          background: linear-gradient(180deg, var(--dark) 0%, #1e293b 100%);
+          background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
           overflow: hidden;
         }
         
@@ -484,7 +719,7 @@ export default function Home() {
         
         .hero h1 {
           font-size: clamp(2.5rem, 5vw, 4rem);
-          font-weight: 800;
+          font-weight: 700;
           margin-bottom: 20px;
           line-height: 1.2;
         }
@@ -500,12 +735,29 @@ export default function Home() {
         
         .value-props {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          grid-template-columns: repeat(3, 1fr);
           gap: 20px;
-          margin: 40px 0;
-          max-width: 1000px;
-          margin-left: auto;
-          margin-right: auto;
+          margin: 40px auto;
+          max-width: 900px;
+        }
+
+        .value-prop-secondary {
+          max-width: 600px;
+          margin: 20px auto 40px;
+          padding: 20px 30px;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .value-prop-secondary h3 {
+          margin: 0;
+          font-size: 1.1rem;
+        }
+
+        .value-prop-secondary p {
+          margin: 0;
+          opacity: 0.9;
         }
         
         .value-prop {
@@ -516,19 +768,21 @@ export default function Home() {
         .value-prop-icon {
           width: 40px;
           height: 40px;
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          background: linear-gradient(135deg, var(--gold), var(--gold-dark));
           border-radius: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 15px;
           font-size: 20px;
+          color: var(--navy);
+          font-weight: 700;
         }
         
         .trust-bar {
           display: flex;
           justify-content: center;
-          gap: 40px;
+          gap: 60px;
           margin-top: 60px;
           flex-wrap: wrap;
         }
@@ -540,7 +794,7 @@ export default function Home() {
         .trust-number {
           font-size: 2rem;
           font-weight: 700;
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: linear-gradient(135deg, var(--gold), var(--gold-dark));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -566,7 +820,7 @@ export default function Home() {
         .problem-card {
           padding: 30px;
           border-radius: 16px;
-          background: #f8fafc;
+          background: var(--light-gray);
           border: 1px solid #e2e8f0;
           transition: all 0.3s ease;
         }
@@ -579,13 +833,13 @@ export default function Home() {
         .problem-stat {
           font-size: 2.5rem;
           font-weight: 700;
-          color: var(--accent);
+          color: var(--gold-dark);
           margin-bottom: 10px;
         }
         
         .solution-section {
           padding: 80px 0;
-          background: linear-gradient(180deg, #f8fafc 0%, white 100%);
+          background: linear-gradient(180deg, var(--light-gray) 0%, white 100%);
         }
         
         .exit-strategies {
@@ -601,10 +855,13 @@ export default function Home() {
           position: relative;
           overflow: hidden;
           transition: all 0.3s ease;
+          background: white !important;
+          border: 2px solid var(--light-gray);
         }
         
         .strategy-card:hover {
           transform: translateY(-10px);
+          border-color: var(--gold);
         }
         
         .strategy-number {
@@ -614,6 +871,7 @@ export default function Home() {
           position: absolute;
           top: 10px;
           right: 20px;
+          color: var(--navy);
         }
         
         .strategy-title {
@@ -625,7 +883,7 @@ export default function Home() {
         
         .process-section {
           padding: 80px 0;
-          background: var(--dark);
+          background: var(--navy);
           color: white;
           position: relative;
         }
@@ -645,7 +903,7 @@ export default function Home() {
         .step-number {
           width: 60px;
           height: 60px;
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          background: linear-gradient(135deg, var(--gold), var(--gold-dark));
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -653,6 +911,7 @@ export default function Home() {
           font-size: 1.5rem;
           font-weight: 700;
           margin: 0 auto 20px;
+          color: var(--navy);
         }
         
         .form-section {
@@ -662,10 +921,17 @@ export default function Home() {
         }
         
         .form-container {
-          max-width: 600px;
+          max-width: 800px;
           margin: 0 auto;
-          padding: 50px;
+          padding: 60px;
           position: relative;
+          background: var(--light-gray) !important;
+        }
+
+        .form-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
         }
         
         .form-group {
@@ -676,10 +942,10 @@ export default function Home() {
           display: block;
           margin-bottom: 8px;
           font-weight: 600;
-          color: var(--dark);
+          color: var(--navy);
         }
         
-        input, select {
+        input, select, textarea {
           width: 100%;
           padding: 15px;
           border: 2px solid #e2e8f0;
@@ -687,12 +953,18 @@ export default function Home() {
           font-size: 16px;
           transition: all 0.3s ease;
           background: white;
+          font-family: 'Satoshi', sans-serif;
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 100px;
         }
         
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
           outline: none;
-          border-color: var(--primary);
-          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+          border-color: var(--gold);
+          box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
         }
         
         .checkbox-group {
@@ -716,26 +988,28 @@ export default function Home() {
         .testimonial-card {
           padding: 30px;
           margin: 20px 0;
-          border-left: 4px solid var(--primary);
+          border-left: 4px solid var(--gold);
+          background: white !important;
         }
         
         .testimonial-text {
           font-size: 1.1rem;
           font-style: italic;
           margin-bottom: 15px;
-          color: #475569;
+          color: var(--gray);
         }
         
         .testimonial-author {
           font-weight: 600;
-          color: var(--dark);
+          color: var(--navy);
         }
         
         .section-title {
           font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 800;
+          font-weight: 700;
           text-align: center;
           margin-bottom: 20px;
+          line-height: 1.2;
         }
         
         .section-subtitle {
@@ -745,62 +1019,204 @@ export default function Home() {
           max-width: 800px;
           margin: 0 auto;
         }
-        
-        .float-1, .float-2, .float-3 {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(40px);
-          opacity: 0.3;
-          animation: float 20s ease-in-out infinite;
+
+        /* Calculator Styles */
+        .calculator-container {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 40px;
+          background: rgba(255, 255, 255, 0.1) !important;
+          text-align: left;
         }
-        
-        .float-1 {
-          width: 300px;
-          height: 300px;
-          background: linear-gradient(135deg, #667eea, #764ba2);
-          top: -150px;
-          left: -150px;
+
+        .calculator-container h3 {
+          text-align: center;
+          margin-bottom: 30px;
+          color: white;
+          font-size: 1.8rem;
         }
-        
-        .float-2 {
-          width: 200px;
-          height: 200px;
-          background: linear-gradient(135deg, #f093fb, #f5576c);
-          bottom: -100px;
-          right: -100px;
-          animation-delay: -5s;
+
+        .calculator-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
         }
-        
-        .float-3 {
-          width: 250px;
-          height: 250px;
-          background: linear-gradient(135deg, #4facfe, #00f2fe);
-          top: 50%;
-          left: 50%;
-          animation-delay: -10s;
+
+        .calc-group {
+          margin-bottom: 0;
+        }
+
+        .calc-group label {
+          color: white;
+          font-size: 0.9rem;
+          margin-bottom: 5px;
+        }
+
+        .calc-group input,
+        .calc-group select {
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: white;
+          padding: 12px;
+        }
+
+        .calc-group input::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        .calc-result {
+          text-align: center;
+          margin-top: 30px;
+          padding: 30px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 10px;
+        }
+
+        .calc-result h4 {
+          color: white;
+          margin-bottom: 10px;
+        }
+
+        .calc-total {
+          font-size: 3rem;
+          font-weight: 700;
+          color: var(--gold);
+          margin-bottom: 10px;
+        }
+
+        .calc-result p {
+          color: white;
+          opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+          background: var(--navy);
+          color: white;
+          padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 40px;
+          margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+          margin-bottom: 20px;
+          color: var(--gold);
+        }
+
+        .footer-column ul {
+          list-style: none;
+        }
+
+        .footer-column ul li {
+          margin-bottom: 10px;
+        }
+
+        .footer-column a {
+          color: white;
+          text-decoration: none;
+          opacity: 0.8;
+          transition: all 0.3s;
+        }
+
+        .footer-column a:hover {
+          opacity: 1;
+          color: var(--gold);
+        }
+
+        .footer-cta {
+          display: inline-block;
+          margin-top: 15px;
+          background: var(--gold);
+          color: var(--navy);
+          padding: 10px 25px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s;
+        }
+
+        .footer-cta:hover {
+          background: var(--gold-dark);
+          transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+          padding-top: 30px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .footer-links {
+          display: flex;
+          gap: 30px;
+        }
+
+        .footer-links a {
+          color: white;
+          text-decoration: none;
+          opacity: 0.8;
+          transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+          opacity: 1;
         }
         
         @keyframes float {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -30px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
+          0%, 100% { transform: translateY(-50%) rotate(45deg) scale(1); }
+          50% { transform: translateY(-50%) rotate(45deg) scale(1.1); }
         }
         
         @media (max-width: 768px) {
+          .nav-links {
+            display: none;
+          }
+
           .hero h1 {
             font-size: 2rem;
           }
           
+          .value-props {
+            grid-template-columns: 1fr;
+          }
+
           .trust-bar {
-            gap: 20px;
+            gap: 30px;
           }
           
           .form-container {
-            padding: 30px 20px;
+            padding: 40px 30px;
+          }
+
+          .form-grid {
+            grid-template-columns: 1fr;
           }
           
           .checkbox-group {
             grid-template-columns: 1fr;
+          }
+
+          .calculator-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .footer-bottom {
+            flex-direction: column;
+            gap: 20px;
+          }
+
+          .house-3d {
+            width: 400px;
+            height: 400px;
+            right: -200px;
           }
         }
       `}</style>
